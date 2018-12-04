@@ -171,8 +171,12 @@ const addTranscriptToYoutube =  createHigherOrderComponent( ( BlockEdit ) => {
 wp.hooks.addFilter( 'editor.BlockEdit', 'cgb/block-transcript-block', addTranscriptToYoutube );
 
 const saveAttributes = ( element, blockType, attributes ) => {
-    if (!element || 'core-embed/youtube' !== blockType.name ) {
+    if (!element ) {
         return;
+    }
+
+    if ( 'core-embed/youtube' !== blockType.name ) {
+        return element;
     }
 
     return (
